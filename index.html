@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic-Tac-Toe</title>
+    <!-- This gets us our fun 8-bit font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+
+    <!-- loads our own CSS file -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1> TIC-TAC-TOE</h1>
+    <div id = "board">
+        <table>
+            <tr>
+                <td class = "cell" id = "A1"></td>
+                <td class = "cell" id = "A2"></td>
+                <td class = "cell" id = "A3"></td>
+            </tr>
+            <tr>
+                <td class = "cell" id = "B1"></td>
+                <td class = "cell" id = "B2"></td>
+                <td class = "cell" id = "B3"></td>
+            </tr>
+            <tr>
+                <td class = "cell" id = "C1"></td>
+                <td class = "cell" id = "C2"></td>
+                <td class = "cell" id = "C3"></td>
+            </tr>        
+        </table>       
+    </div>
+    <div class = "players">
+        <h2 id = "player1">
+            HUMAN <br>
+            O
+        </h2>
+        <h2 id = "player2">
+            COMPUTER <br>
+            X
+        </h2>
+    </div>
+  </body>
+  <!-- loads our JavaScript file -->
+  <script type="text/javascript" src="app.js"></script>
+</html>

@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Press Start 2P';
+  }
+  
+html {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+  
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.board {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.players {
+    display:flex;
+    flex-direction: row;
+
+}
+
+#player1 {
+    text-align: left;
+    margin-right:32px
+}
+
+#player2 {
+    text-align: right;
+    margin-left:32px
+}
+
+table {
+    border-spacing: 8px;
+}
+
+  td {
+    background-color: black;
+    border-left: white 8px solid;
+    border-right: white 8px solid;
+    border-top: white 12px solid;
+    border-bottom: white 12px solid;
+    height: 128px;
+    width: 128px;
+    text-align: center;
+  }
