@@ -117,7 +117,7 @@ function checkWin(board) {
     else if (board[0][0] === board [1][1] && board[0][0] === board[2][2] && board[0][0] !== null) {
         console.log("YOU WIN!")
     }
-    else if (board[0][2] === board [1][1] && board[0][0] === board[2][0] && board[0][2] !== null) {
+    else if (board[0][2] === board [1][1] && board[0][2] === board[2][0] && board[0][2] !== null) {
         console.log("YOU WIN!")
     }
 }
