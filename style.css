@@ -20,20 +20,35 @@ body {
     align-items: center;
 }
 
-.players {
+#gameplayScreen {
+    display:none;
+    flex-direction: column;
+    align-items: center;
+}
+#restart {
+    display:none;
+}
+
+#players {
     display:flex;
     flex-direction: row;
-
 }
 
 #player1 {
     text-align: left;
+    margin-top: -16px;
     margin-right:32px
 }
 
 #player2 {
     text-align: right;
+    margin-top: -16px;
     margin-left:32px
+}
+
+#message {
+    margin: 64px;
+    font-size: 32px;
 }
 
 table {
@@ -54,4 +69,23 @@ td {
 
   h2 {
     text-align: center;
+  }
+
+  .startingScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nameEntry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  #EnterButton {
+    margin: 16px;
   }

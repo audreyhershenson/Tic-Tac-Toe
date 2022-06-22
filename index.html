@@ -30,17 +30,41 @@
             </tr>        
         </table>       
     </div>
-    <div class = "players">
-        <div id = "player1">
-            <h2> O </h2>
-            PLAYER 1
+
+    <!-- starting screen -->
+    <div id = startingScreen>
+        <div class = "nameEntry">
+            <label for="p1name">PLAYER 1:</label>
+            <input type="text" id="p1name" name="p1name"> 
         </div>
-        <div id = "player2">
-            <h2> X </h2>
-            PLAYER 2
+        <div class = "nameEntry">
+            <label for="p2name">PLAYER 2:</label>
+            <input type="text" id="p2name" name="p2name"> 
+            <button id = "EnterButton" onclick="startGame()"> ENTER NAMES </button>
         </div>
+        (ENTER "Computer" FOR PLAYER 2 TO PLAY AGAINST AN AI)
+        <br>   
+    </div>
+
+    <!-- during gameplay screen -->
+    <div id = "gameplayScreen">
+            <div id = "players">
+                <div id = "p1box">
+                    <h2> O </h2>
+                    <div id = "player1">PLAYER 1</div>
+                </div>
+                <div id = "p2box">
+                    <h2> X </h2>
+                    <div id = "player2">PLAYER 2</div>
+                </div>
+            </div>
+            <br>
+            <div id = "message">GO!</div>
+    </div>
+    <div id = restart>
+        <button id = "restartButton" onclick="restartGame()"> PLAY AGAIN? </button>
     </div>
   </body>
-  <!-- loads our JavaScript file -->
+
   <script type="text/javascript" src="app.js"></script>
 </html>
