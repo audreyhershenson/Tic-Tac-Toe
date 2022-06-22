@@ -14,8 +14,9 @@
 
 const gameArea = document.getElementById('board');
 
-let player = "Player 1"
-let playerSymbol = "O"
+let player = "Player 1";
+let playerSymbol = "O";
+let gameRunning = true;
 
 let board = [
     [null, null, null],
@@ -28,53 +29,56 @@ let board = [
 ///////////////////
 
 gameArea.addEventListener('click', function(clickEvent) {
-
-    if (clickEvent.target.matches('.cell')) {
-        playerSwitch();
-        if (clickEvent.target.textContent == "") {
-            clickEvent.target.textContent = playerSymbol;
-            arrayConvert(playerSymbol)
+    if (gameRunning === true) {
+        if (clickEvent.target.matches('.cell')) {
+            if (clickEvent.target.textContent == "") {
+                playerSwitch();
+                clickEvent.target.textContent = playerSymbol;
+                arrayConvert(playerSymbol);
+                console.log(player + "'s turn!");
+            }
+        }  
+        function arrayConvert(symbol) {
+            if (clickEvent.target.matches('#A1')) {
+                board[0][0] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#A2')) {
+                board[0][1] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#A3')) {
+                board[0][2] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#B1')) {
+                board[1][0] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#B2')) {
+                board[1][1] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#B3')) {
+                board[1][2] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#C1')) {
+                board[2][0] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#C2')) {
+                board[2][1] = symbol;
+                console.log(board);
+            }
+            if (clickEvent.target.matches('#C3')) {
+                board[2][2] = symbol;
+                console.log(board);
+            }
         }
-    }  
-    function arrayConvert(playerSymbol) {
-        if (clickEvent.target.matches('#A1')) {
-            board[0][0] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#A2')) {
-            board[0][1] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#A3')) {
-            board[0][2] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#B1')) {
-            board[1][0] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#B2')) {
-            board[1][1] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#B3')) {
-            board[1][2] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#C1')) {
-            board[2][0] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#C2')) {
-            board[2][1] = playerSymbol;
-            console.log(board)
-        }
-        if (clickEvent.target.matches('#C3')) {
-            board[2][2] = playerSymbol;
-            console.log(board)
-        }
+        checkWin(board);
     }
-    checkWin(board);
+
 })
 
 ////////////////////////
@@ -83,41 +87,59 @@ gameArea.addEventListener('click', function(clickEvent) {
 
 function playerSwitch() {
     if (player === "Player 1") {
-        player =  "Player 2";
-        playerSymbol = "O"
+        player = "Player 2";
+        playerSymbol = "O";
     }
-    else {
+    else if (player === "Player 2") {
         player = "Player 1";
-        playerSymbol = "X"
+        playerSymbol = "X";
     }
 }
 
 function checkWin(board) {
+    //check player
+    playerVic = null;
+ 
+    if (playerSymbol === "X") {
+        playerVic = "Player 2";
+    }
+    else if (playerSymbol === "O") {
+       playerVic = "Player 1";
+    }
+
     //horizontal
     if (board[0][0] === board [0][1] && board[0][1] === board[0][2] && board[0][0] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     else if (board[1][0] === board [1][1] && board[1][1] === board[1][2] && board[1][0] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     else if (board[2][0] === board [2][1] && board[2][1] === board[2][2] && board[2][0] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     //vertical
     else if (board[0][0] === board [1][0] && board[0][0] === board[2][0] && board[0][0] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     else if (board[0][1] === board [1][1] && board[0][1] === board[2][1] && board[0][1] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     else if (board[0][2] === board [1][2] && board[0][2] === board[2][2] && board[0][2] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     //diagonal
     else if (board[0][0] === board [1][1] && board[0][0] === board[2][2] && board[0][0] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
     else if (board[0][2] === board [1][1] && board[0][2] === board[2][0] && board[0][2] !== null) {
-        console.log("YOU WIN!")
+        console.log(playerVic + " WINS!");
+        gameRunning = false;
     }
 }

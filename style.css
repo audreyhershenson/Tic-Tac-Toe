@@ -40,7 +40,7 @@ table {
     border-spacing: 8px;
 }
 
-  td {
+td {
     background-color: black;
     border-left: white 8px solid;
     border-right: white 8px solid;
@@ -48,5 +48,10 @@ table {
     border-bottom: white 12px solid;
     height: 128px;
     width: 128px;
+    text-align: center;
+    font-size: 64px;
+  }
+
+  h2 {
     text-align: center;
   }
