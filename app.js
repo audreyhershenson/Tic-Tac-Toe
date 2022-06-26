@@ -27,7 +27,9 @@ let board = [
 
 if  (document.getElementById("p2name").value === "Computer") {
     opponent = "Computer";
-    
+}
+else {
+    opponent = null;
 }
 
 ///////////////////
@@ -37,8 +39,9 @@ if  (document.getElementById("p2name").value === "Computer") {
 gameArea.add
 
 gameArea.addEventListener('click', function(clickEvent) {
+    console.log(clickEvent)
     if (gameRunning === true) {
-        if (clickEvent.target.matches('.cell')) {
+        if (clickEvent.target.innerHTML === '') {
             if (clickEvent.target.textContent == "") {
                 playerSwitch();
                 clickEvent.target.textContent = playerSymbol;
@@ -89,8 +92,7 @@ function playerSwitch() {
         
         if (opponent === "Computer") {
             console.log("Computer turn");
-            computerChoose();
-            
+            computerChoose();  
         }
         else {
             player = document.getElementById("p2name").value;
@@ -170,17 +172,51 @@ function checkWin(board) {
 function computerChoose() {
 
     arrayChoose = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"];
-    let computerMove = Math.floor(Math.random() * 8);
-    console.log(computerMove);
-    let computerChoice = arrayChoose[computerMove];
-    let space = document.getElementById(computerChoice); 
-    if (space.textContent === "") {
-        space.textContent = "X";
+    //remonve here
+    for (i = 0; i < arrayChoose.length; i++) {
+        if (document.getElementById(arrayChoose[i]).innerHTML !== "") {
+            console.log(arrayChoose);
+            console.log(arrayChoose[i]);
+            console.log(arrayChoose[i].innerHTML);
+            arrayChoose.splice(i,1);
+        }
     }
-    else if (space.textContent !== "") {
-        computerChoose();
+    let computerMove = Math.floor(Math.random() * (arrayChoose.length));
+    let space = document.getElementById(arrayChoose[computerMove]); 
+    
+    console.log(space);
+    space.textContent = "X";
+    if (space.id === ('A1')) {
+        board[0][0] = "X";
     }
-}
+    if (space.id === ('A2')) {
+        board[0][1] = "X";
+    }
+    if (space.id === ('A3')) {
+        board[0][2] = "X";
+    }
+    if (space.id === ('B1')) {
+        board[1][0] = "X";
+    }
+    if (space.id === ('B2')) {
+        board[1][1] = "X";
+    }
+    if (space.id === ('B3')) {
+        board[1][2] = "X";
+    }
+    if (space.id === ('C1')) {
+        board[2][0] = "X";
+    }
+    if (space.id === ('C2')) {
+        board[2][1] = "X";
+    }
+    if (space.id === ('C3')) {
+        board[2][2] = "X";
+    }
+    console.log(space.id);
+    console.log(board);
+    }
+    
 
 function startGame() {  
     gameRunning = true;
