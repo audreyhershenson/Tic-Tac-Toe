@@ -14,8 +14,8 @@
 
 const gameArea = document.getElementById('board');
 
-let player = document.getElementById("p1name").value;
-let playerSymbol = "O";
+let player = document.getElementById("p2name").value;
+let playerSymbol = "X";
 let gameRunning = false;
 let opponent = null;
 
@@ -24,6 +24,7 @@ let board = [
     [null, null, null],
     [null, null, null]
 ]
+arrayChoose = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"];
 
 if  (document.getElementById("p2name").value === "Computer") {
     opponent = "Computer";
@@ -41,11 +42,16 @@ gameArea.add
 gameArea.addEventListener('click', function(clickEvent) {
     console.log(clickEvent)
     if (gameRunning === true) {
-        if (clickEvent.target.innerHTML === '') {
+        if (player === document.getElementById("p1name").value) {
+            playerSymbol = "O";
+        }
+        else {
+            playerSymbol = "X";
+        }
+        if (clickEvent.target.innerHTML === '') { 
             if (clickEvent.target.textContent == "") {
-                playerSwitch();
                 clickEvent.target.textContent = playerSymbol;
-                arrayConvert(playerSymbol);
+                arrayConvert(playerSymbol)
                 document.getElementById('message').innerHTML = (player + "'s turn!");
             }
         }  
@@ -83,95 +89,99 @@ gameArea.addEventListener('click', function(clickEvent) {
 
 })
 
+
+
 ////////////////////////
 //function definitions//
 ////////////////////////
 
-function playerSwitch() {
-    if (player === document.getElementById("p1name").value) {
+function playerSwitch(currentP) {
+    
+    if (currentP === document.getElementById("p1name").value) {
         
         if (opponent === "Computer") {
-            console.log("Computer turn");
+            player = document.getElementById("p2name").value;
+            playerSymbol = "X";
             computerChoose();  
         }
         else {
             player = document.getElementById("p2name").value;
-            playerSymbol = "O";
+            playerSymbol = "X";
         }
     }
-    else if (player === document.getElementById("p2name").value) {
+    else if (currentP === document.getElementById("p2name").value){
         player = document.getElementById("p1name").value;
-        playerSymbol = "X";
+        playerSymbol = "O";
     }
+    console.log(player);
 }
 
 function checkWin(board) {
-    //check player
-    playerVic = null;
- 
-    if (playerSymbol === "X") {
-        playerVic = document.getElementById("p2name").value;
-    }
-    else if (playerSymbol === "O") {
-        playerVic = document.getElementById("p1name").value;
-    }
 
     //horizontal
     if (board[0][0] === board [0][1] && board[0][1] === board[0][2] && board[0][0] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     else if (board[1][0] === board [1][1] && board[1][1] === board[1][2] && board[1][0] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     else if (board[2][0] === board [2][1] && board[2][1] === board[2][2] && board[2][0] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     //vertical
     else if (board[0][0] === board [1][0] && board[0][0] === board[2][0] && board[0][0] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     else if (board[0][1] === board [1][1] && board[0][1] === board[2][1] && board[0][1] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     else if (board[0][2] === board [1][2] && board[0][2] === board[2][2] && board[0][2] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     //diagonal
     else if (board[0][0] === board [1][1] && board[0][0] === board[2][2] && board[0][0] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
     else if (board[0][2] === board [1][1] && board[0][2] === board[2][0] && board[0][2] !== null) {
-        document.getElementById('message').innerHTML = (playerVic + " WINS!");
+        document.getElementById('message').innerHTML = (player + " WINS!");
         document.getElementById("restart").style.display = "flex";
         document.getElementById("restartButton").style.display = "block";
         gameRunning = false;
     }
+        //check draw
+    else if  (board[0][0] !== null && board[0][1] !== null && board[0][2] !== null && board[1][0] !== null && board[1][1] !== null && board[1][2] !== null && board[2][0] !== null && board[2][1] !== null && board[2][2] !== null) {
+    document.getElementById('message').innerHTML = ("DRAW");
+    document.getElementById("restart").style.display = "flex";
+    document.getElementById("restartButton").style.display = "block";
+    gameRunning = false;
+    }
+    playerSwitch(player);
 }
 
 function computerChoose() {
 
-    arrayChoose = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"];
+    
     //remonve here
     for (i = 0; i < arrayChoose.length; i++) {
         if (document.getElementById(arrayChoose[i]).innerHTML !== "") {
@@ -183,8 +193,6 @@ function computerChoose() {
     }
     let computerMove = Math.floor(Math.random() * (arrayChoose.length));
     let space = document.getElementById(arrayChoose[computerMove]); 
-    
-    console.log(space);
     space.textContent = "X";
     if (space.id === ('A1')) {
         board[0][0] = "X";
@@ -213,13 +221,16 @@ function computerChoose() {
     if (space.id === ('C3')) {
         board[2][2] = "X";
     }
-    console.log(space.id);
-    console.log(board);
-    }
+    checkWin(board);
+    
+    
+}
     
 
 function startGame() {  
     gameRunning = true;
+    player = document.getElementById("p1name").value;
+    playerSymbol = "O";
 
     let divStarting = document.getElementById("startingScreen");
     let divGameplay = document.getElementById("gameplayScreen");
@@ -240,6 +251,8 @@ function restartGame() {
     [null, null, null],
     [null, null, null]
     ]
+
+    arrayChoose = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"];
     document.getElementById('message').innerHTML = ("GO!");
 
     document.getElementById("A1").textContent = "";
